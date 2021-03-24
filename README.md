@@ -1,2 +1,2 @@
 # claire-clothing
-An e-commerce website for a clothing store
+An e-commerce website for a clothing store.

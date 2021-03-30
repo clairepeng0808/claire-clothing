@@ -31,6 +31,15 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
+    padding: 20px 40px;
+  }
+
+  h1 {
+    font-size:40px;
+  }
+
+  h2 {
+    font-size:28px;
   }
 `;
 

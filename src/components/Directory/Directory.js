@@ -1,16 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import MenuItem from '../MenuItem/MenuItem';
 import sections from '../Directory/directoryData';
 
 const Directory = () => {
-  const [sectionData, setSectionData] = useState(sections);
+  const [sectionData, setSectionData] = useState([]);
+
+  useEffect(() => {
+    setSectionData(sections);
+  }, []);
 
   return (
     <StyledDirectory>
-      {sectionData?.map(({ title, imageUrl, id, size }) => (
-        <MenuItem key={id} title={title} imageUrl={imageUrl} size={size} />
+      {sectionData?.map(({ id, ...props }) => (
+        <MenuItem key={id} {...props} />
       ))}
     </StyledDirectory>
   );

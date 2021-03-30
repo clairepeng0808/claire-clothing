@@ -1,10 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled, { css } from 'styled-components';
+import { withRouter } from 'react-router-dom';
 
-const MenuItem = ({ title, imageUrl, size }) => {
+const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }) => {
   return (
-    <StyledMenuItem size={size} imageUrl={imageUrl}>
+    <StyledMenuItem
+      size={size}
+      imageUrl={imageUrl}
+      onClick={() => history.push(`${match.url}${linkUrl}`)}
+    >
       <div className="bg-image"></div>
       <StyledContent>
         <div className="title">{title}</div>
@@ -77,6 +82,7 @@ const StyledContent = styled.div`
     font-size: 16px;
   }
 `;
+
 MenuItem.propTypes = {};
 
-export default MenuItem;
+export default withRouter(MenuItem);

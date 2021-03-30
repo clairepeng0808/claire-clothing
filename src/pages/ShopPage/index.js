@@ -12,16 +12,14 @@ const ShopPage = (props) => {
   }, []);
 
   return (
-    <div className="container">
-      <StyledShopPage>
-        <h1 className="page-title">SHOP PAGE</h1>
-        <div className="collection">
-          {shopData.map(({ id, ...props }) => (
-            <CollectionPreview key={id} {...props} />
-          ))}
-        </div>
-      </StyledShopPage>
-    </div>
+    <StyledShopPage>
+      <h1 className="page-title">SHOP</h1>
+      <div className="collection">
+        {shopData.map(({ id, ...props }) => (
+          <CollectionPreview key={id} {...props} />
+        ))}
+      </div>
+    </StyledShopPage>
   );
 };
 

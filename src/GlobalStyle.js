@@ -12,9 +12,12 @@ const GlobalStyle = createGlobalStyle`
     height:auto; 
   }
   a {
+    text-decoration: none;
+    color: black;
     &:hover {
-      text-decoration: none;
+      color: gray;
     }
+  }
   }
 
   li {
@@ -31,7 +34,7 @@ const GlobalStyle = createGlobalStyle`
     background-repeat: no-repeat;
     background-position: center;
     height: 100%;
-    padding: 20px 40px;
+    padding: 16px 0px;
   }
 
   h1 {

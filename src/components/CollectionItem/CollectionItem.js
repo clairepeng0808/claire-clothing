@@ -16,14 +16,15 @@ const CollectionItem = ({ name, price, imageUrl }) => {
 
 const StyledCollectionItem = styled.div`
   height: 350px;
-  width: 24%;
+  width: 22%;
   min-width: 200px;
-  margin: 12px 1% 0 0;
+  margin: 12px 2% 0 0;
 
   .collection-image {
     background-image: url(${(props) => props.imageUrl});
     background-size: cover;
     background-position: center;
+    margin-bottom: 5px;
     width: 100%;
     height: 95%;
   }

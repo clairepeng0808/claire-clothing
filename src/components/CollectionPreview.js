@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import CollectionItem from '../../components/CollectionItem/CollectionItem';
+import CollectionItem from './CollectionItem';
 
 const CollectionPreview = ({ title, items }) => {
   return (
@@ -24,6 +24,9 @@ const StyledCollectionPreview = styled.div`
   }
 `;
 
-CollectionPreview.propTypes = {};
+CollectionPreview.propTypes = {
+  title: PropTypes.string.isRequired,
+  item: PropTypes.array.isRequired,
+};
 
-export default CollectionPreview;
+export default React.memo(CollectionPreview);

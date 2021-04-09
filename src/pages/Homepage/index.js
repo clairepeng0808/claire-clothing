@@ -1,7 +1,7 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Directory from '../../components/Directory/Directory';
+import Directory from '../../components/Directory';
 
 const Homepage = (props) => {
   return (
@@ -17,6 +17,6 @@ const StyledHomePage = styled.div`
   align-items: center;
 `;
 
-Homepage.propTypes = {};
+// Homepage.propTypes = {};
 
 export default Homepage;

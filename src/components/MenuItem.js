@@ -83,6 +83,13 @@ const StyledContent = styled.div`
   }
 `;
 
-MenuItem.propTypes = {};
+MenuItem.propTypes = {
+  title: PropTypes.string.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+  size: PropTypes.string.isRequired,
+  linkUrl: PropTypes.string.isRequired,
+  history: PropTypes.array.isRequired,
+  match: PropTypes.object.isRequired,
+};
 
-export default withRouter(MenuItem);
+export default withRouter(React.memo(MenuItem));

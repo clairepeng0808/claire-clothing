@@ -38,7 +38,10 @@ const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size:40px;
+    &.page-title {
+      font-size:48px;
+      font-weight: bold;
+    }
   }
 
   h2 {

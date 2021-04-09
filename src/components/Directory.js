@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import MenuItem from '../MenuItem/MenuItem';
-import sections from '../Directory/directoryData';
+import MenuItem from './MenuItem';
+import sections from './testData/directoryData';
 
 const Directory = () => {
   const [sectionData, setSectionData] = useState([]);
@@ -27,6 +27,6 @@ const StyledDirectory = styled.div`
   justify-content: space-between;
 `;
 
-Directory.propTypes = {};
+// Directory.propTypes = {};
 
-export default Directory;
+export default React.memo(Directory);

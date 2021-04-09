@@ -36,6 +36,10 @@ const StyledCollectionItem = styled.div`
   }
 `;
 
-CollectionItem.propTypes = {};
+CollectionItem.propTypes = {
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
+  imageUrl: PropTypes.string.isRequired,
+};
 
-export default CollectionItem;
+export default React.memo(CollectionItem);

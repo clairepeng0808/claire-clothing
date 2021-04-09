@@ -1,8 +1,8 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { ReactComponent as Logo } from '../assets/crown.svg';
 
 const Header = (props) => {
   return (
@@ -14,7 +14,7 @@ const Header = (props) => {
         <Link className="nav-item" to="/shop">
           SHOP
         </Link>
-        <Link className="nav-item" to="./shop">
+        <Link className="nav-item" to="/shop">
           CONTACT
         </Link>
       </div>
@@ -36,6 +36,6 @@ const StyledHeader = styled.div`
   }
 `;
 
-Header.propTypes = {};
+// Header.propTypes = {};
 
-export default Header;
+export default React.memo(Header);

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import SHOP_DATA from './shopData';
-import CollectionPreview from '../../components/CollectionPreview/CollectionPreview';
+import CollectionPreview from '../../components/CollectionPreview';
 
 const ShopPage = (props) => {
   const [shopData, setShopData] = useState([]);
@@ -23,13 +23,8 @@ const ShopPage = (props) => {
   );
 };
 
-const StyledShopPage = styled.div`
-  .page-title {
-    font-size: 48px;
-    font-weight: bold;
-  }
-`;
+const StyledShopPage = styled.div``;
 
-ShopPage.propTypes = {};
+// ShopPage.propTypes = {};
 
 export default ShopPage;

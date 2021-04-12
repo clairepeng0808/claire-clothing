@@ -1,10 +1,11 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/crown.svg';
+import { auth } from '../firebase/firebaseUtils';
 
-const Header = (props) => {
+const Header = ({ currentUser }) => {
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">
@@ -17,6 +18,15 @@ const Header = (props) => {
         <Link className="nav-item" to="/shop">
           CONTACT
         </Link>
+        {currentUser ? (
+          <div className="nav-item" onClick={() => auth.signOut()}>
+            SIGN OUT
+          </div>
+        ) : (
+          <Link className="nav-item" to="/signin">
+            SIGN IN
+          </Link>
+        )}
       </div>
     </StyledHeader>
   );
@@ -29,13 +39,17 @@ const StyledHeader = styled.div`
   margin-bottom: 28px;
   .nav-item {
     padding: 10px 15px;
-  }
-  a {
     text-decoration: none;
     color: black;
+    &:hover {
+      cursor: pointer;
+      color: gray;
+    }
   }
 `;
 
-// Header.propTypes = {};
+Header.propTypes = {
+  currentUser: PropTypes.object,
+};
 
 export default React.memo(Header);

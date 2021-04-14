@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Form } from 'react-bootstrap';
+import color from '../../style/color';
 import styled from 'styled-components';
 
 const FormInput = React.forwardRef((props, ref) => {
@@ -23,13 +24,6 @@ const FormInput = React.forwardRef((props, ref) => {
     </StyledFormInput>
   );
 });
-
-const color = {
-  dark: '#000',
-  primary: '#1597bb',
-  secondary: '#756f86',
-  danger: '#c64756',
-};
 
 const StyledFormInput = styled(Form.Group)`
   position: relative;
@@ -63,7 +57,7 @@ const StyledFormInput = styled(Form.Group)`
     transition: 300ms ease all;
 
     &.shrink {
-      color: ${(props) => (props.errors ? color.danger : color.primary)};
+      color: ${(props) => (props.errors ? color.danger : color.secondary)};
       top: -14px;
       font-size: 14px;
     }

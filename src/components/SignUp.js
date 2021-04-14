@@ -6,8 +6,9 @@ import CustomButton from './Basics/CustomButton';
 import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { signInWithGoogle } from '../firebase/firebaseUtils';
+import { auth, createUserProfileDocument } from '../firebase/firebaseUtils';
 
-const SignIn = (props) => {
+const SignUp = (props) => {
   const {
     register,
     handleSubmit,
@@ -16,16 +17,41 @@ const SignIn = (props) => {
     formState: { errors },
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = (data, e) => {
-    reset();
+  const password = watch('password');
+
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        data.email,
+        data.password
+      );
+      await createUserProfileDocument(user, { displayName: data.displayName });
+      reset();
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
   return (
     <StyledSignIn>
-      <h2 className="form-title">I already have an account</h2>
-      <span className="form-subtitle"> Sign in with your email account </span>
-
+      <h2 className="form-title">I do not have an account</h2>
+      <span className="form-subtitle"> Sign up with your email & password</span>
       <Form className="sign-in-form" onSubmit={handleSubmit(onSubmit)}>
+        <FormInput
+          {...register('displayName', {
+            required: 'Please fill out this field.',
+            minLength: {
+              value: 3,
+              message:
+                'The minimum length of the display name should be 3 characters.',
+            },
+          })}
+          label="Display Name"
+          content={watch('displayName')}
+          defaultValue=""
+          errors={errors.displayName}
+        />
         <FormInput
           {...register('email', {
             required: 'Please fill out this field.',
@@ -55,9 +81,21 @@ const SignIn = (props) => {
           errors={errors.password}
           helptext="Your password must have at least 8 characters."
         />
+        <FormInput
+          {...register('confirmPassword', {
+            required: 'Please fill out this field.',
+            validate: (value) =>
+              value === password || 'The passwords do not match.',
+          })}
+          label="Confirm Password"
+          type="password"
+          defaultValue=""
+          content={watch('confirmPassword')}
+          errors={errors.confirmPassword}
+        />
         <div className="button-group">
           <CustomButton className="sign-in-btn mr-3" type="submit">
-            Sign In
+            Sign Up
           </CustomButton>
           <CustomButton
             onClick={signInWithGoogle}
@@ -65,7 +103,7 @@ const SignIn = (props) => {
             className="sign-in-btn"
             type="button"
           >
-            Sign In with Google
+            Sign Up with Google
           </CustomButton>
         </div>
       </Form>
@@ -89,4 +127,4 @@ const StyledSignIn = styled.div`
 
 // SignIn.propTypes = {};
 
-export default React.memo(SignIn);
+export default React.memo(SignUp);

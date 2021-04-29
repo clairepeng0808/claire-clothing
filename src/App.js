@@ -10,7 +10,7 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
 
   useEffect(() => {
-    // Whenever we call the onAuthStateChanged() or onSnapshot() methods from our auth  library or referenceObject, we get back a function that lets us unsubscribe from the listener we just instantiated.
+    // Whenever we call the onAuthStateChanged() or onSnapshot() methods from our auth library or referenceObject, we get back a function that lets us unsubscribe from the listener we just instantiated.
     const unsubscribeFromAuth = auth.onAuthStateChanged(async (userAuth) => {
       if (userAuth) {
         const userRef = await createUserProfileDocument(userAuth);
@@ -30,9 +30,9 @@ const App = () => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(currentUser);
-  }, [currentUser]);
+  // useEffect(() => {
+  //   console.log(currentUser);
+  // }, [currentUser]);
 
   return (
     <div className="container">

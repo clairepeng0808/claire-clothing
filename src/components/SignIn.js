@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FormInput from './Basics/FormInput';
 import CustomButton from './Basics/CustomButton';
 import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { signInWithGoogle } from '../firebase/firebaseUtils';
+import { auth, signInWithGoogle } from '../firebase/firebaseUtils';
+import color from '../style/color';
 
 const SignIn = (props) => {
   const {
@@ -16,8 +17,18 @@ const SignIn = (props) => {
     formState: { errors },
   } = useForm({ mode: 'onChange' });
 
-  const onSubmit = (data, e) => {
-    reset();
+  const [error, setError] = useState(null);
+
+  const onSubmit = async (data, e) => {
+    e.preventDefault();
+
+    try {
+      await auth.signInWithEmailAndPassword(data.email, data.password);
+      setError(null);
+      reset();
+    } catch (error) {
+      setError(error.message);
+    }
   };
 
   return (
@@ -55,6 +66,7 @@ const SignIn = (props) => {
           errors={errors.password}
           helptext="Your password must have at least 8 characters."
         />
+        {error && <p className="error-msg">{error}</p>}
         <div className="button-group">
           <CustomButton className="sign-in-btn mr-3" type="submit">
             Sign In
@@ -84,6 +96,10 @@ const StyledSignIn = styled.div`
   }
   .sign-in-btn {
     margin-top: 16px;
+  }
+  .error-msg {
+    font-size: 14px;
+    color: ${color.danger};
   }
 `;
 

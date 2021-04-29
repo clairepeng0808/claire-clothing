@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 // import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import FormInput from './Basics/FormInput';
 import CustomButton from './Basics/CustomButton';
 import { Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import { signInWithGoogle } from '../firebase/firebaseUtils';
-import { auth, createUserProfileDocument } from '../firebase/firebaseUtils';
+import color from '../style/color';
+import {
+  auth,
+  signInWithGoogle,
+  createUserProfileDocument,
+} from '../firebase/firebaseUtils';
 
 const SignUp = (props) => {
   const {
@@ -17,19 +21,24 @@ const SignUp = (props) => {
     formState: { errors },
   } = useForm({ mode: 'onChange' });
 
+  const [error, setError] = useState(null);
+
   const password = watch('password');
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
     try {
-      const { user } = await auth.createUserWithEmailAndPassword(
+      const { userAuth } = await auth.createUserWithEmailAndPassword(
         data.email,
         data.password
       );
-      await createUserProfileDocument(user, { displayName: data.displayName });
+      await createUserProfileDocument(userAuth, {
+        displayName: data.displayName,
+      });
+      setError(null);
       reset();
     } catch (error) {
-      console.log(error.message);
+      setError(error.message);
     }
   };
 
@@ -93,6 +102,7 @@ const SignUp = (props) => {
           content={watch('confirmPassword')}
           errors={errors.confirmPassword}
         />
+        {error && <p className="error-msg">{error}</p>}
         <div className="button-group">
           <CustomButton className="sign-in-btn mr-3" type="submit">
             Sign Up
@@ -122,6 +132,10 @@ const StyledSignIn = styled.div`
   }
   .sign-in-btn {
     margin-top: 16px;
+  }
+  .error-msg {
+    font-size: 14px;
+    color: ${color.danger};
   }
 `;
 

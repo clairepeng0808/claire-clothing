@@ -21,7 +21,6 @@ const SignIn = (props) => {
 
   const onSubmit = async (data, e) => {
     e.preventDefault();
-
     try {
       await auth.signInWithEmailAndPassword(data.email, data.password);
       setError(null);

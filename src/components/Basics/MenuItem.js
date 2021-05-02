@@ -4,6 +4,9 @@ import styled, { css } from 'styled-components';
 import { withRouter } from 'react-router-dom';
 
 const MenuItem = ({ title, imageUrl, size, linkUrl, history, match }) => {
+  // useState(() => {
+  //   console.log(history);
+  // }, []);
   return (
     <StyledMenuItem
       size={size}
@@ -83,12 +86,16 @@ const StyledContent = styled.div`
   }
 `;
 
+MenuItem.defaultProps = {
+  size: null,
+};
+
 MenuItem.propTypes = {
   title: PropTypes.string.isRequired,
   imageUrl: PropTypes.string.isRequired,
-  size: PropTypes.string.isRequired,
+  size: PropTypes.string,
   linkUrl: PropTypes.string.isRequired,
-  history: PropTypes.array.isRequired,
+  history: PropTypes.object.isRequired,
   match: PropTypes.object.isRequired,
 };
 

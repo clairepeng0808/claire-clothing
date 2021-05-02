@@ -1,11 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from '../assets/crown.svg';
 import { auth } from '../firebase/firebaseUtils';
 
-const Header = ({ currentUser }) => {
+const Header = () => {
+  const currentUser = useSelector((state) => state.user.currentUser);
+
   return (
     <StyledHeader>
       <Link className="logo-container" to="/">

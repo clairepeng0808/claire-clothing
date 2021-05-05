@@ -18,7 +18,8 @@ const CollectionPreview = ({ title, items }) => {
   );
 };
 const StyledCollectionPreview = styled.div`
-  margin: 30px 0;
+  margin: 30px 30px;
+
   .title {
     font-weight: bold;
   }
